@@ -1,8 +1,10 @@
 ---
-title: "MAF Tutorial - Visualizations"
+title: "MAF Tutorial"
 author: Nicole Black
 date: 08/03/22
 ---
+
+*/ IMPORTANT: You must query, download, and prepare the RNAseq data before Monday's meeting (see directions in part 8 of this notebook). Allot 15-20 minutes for the download depending on your laptop's processing power. If you encounter any issues, you must slack Nicole/TAs before Sunday night so we can troubleshoot prior to class time. /*
 
 ###### (1) Set Up
 
@@ -28,7 +30,7 @@ Load in your saved MAF data by reading in your clinical data, re-preparing maf_q
 
 ```{r}
 # write code here
-clinical <- read.csv("/PATH/TO/week4_clinical/brca_clinical_data.csv")
+clinical <- read.csv("/PATH/TO/brca_clinical_data.csv")
 
 maf <- GDCprepare(maf_query) # as long as it runs, ignore any errors
 
@@ -120,9 +122,85 @@ Chosen Gene:
 More highly mutated in young or old population: 
 Hypothesized Reason:
 
-###### (6) Looking Ahead
+###### (5) Lollipop Plots
 
-In this homework we covered a few of the visualization plots maftools offers, but there are many many more available to us!
+Lollipop plots display the location of each mutation along the gene’s DNA sequence. The x-axis of a lollipop plot is the amino acid sequence that makes up the gene. Individual mutations are annotated by a ball-and-stick, which looks like a lollipop, hence the name. The colors represents the type of mutation at a given point on the gene (similar to colors of the oncoplots), and the visualization in the middle of the plot is the gene itself differentiated between its different domain/motif sections.
 
-Next class we'll cover a few more visualizations before moving into analysis plots.
+Let's make a lollipop plot for TP53.
 
+```{r}
+lollipopPlot(maf = FILL IN HERE,
+             gene = "FILL IN HERE")
+
+ggsave("PATH/TO/week6_maf/filename.png")
+```
+
+Does TP53 have any domains? If so, list them and provide a brief description of their functions.
+
+What is the mutation rate of TP53 among all patients in our population?
+
+Approximately what number amino acid is the most mutated, and how many mutations are at this location?
+
+###### (6) Co-Lollipop Plots
+
+Similarly to how we created co-Oncoplots to compare the oncoplot data between two different populations, we can also create co-lollipop plots to do the same.
+
+Recreate your young_maf and old_maf objects.
+
+```{r}
+# write code here
+```
+
+Now fill in the co-lollipop plot function below. Be sure to add descriptive names for each population.
+
+```{r}
+lollipopPlot2(m1 = FILL IN HERE, 
+              m2 = FILL IN HERE, 
+              m1_name = FILL IN HERE,
+              m2_name = FILL IN HERE,
+              gene = "FILL IN HERE") ## pick any gene of your choosing to fill in here
+```
+
+Now, interpret your plot. For example, answer the following questions:
+
+Does it look like the gene is more commonly mutated in young or old patients?
+Are there more mutations in a specific region of the protein? Why might that be?
+What kinds of mutations are the most common?
+Are there any other interesting observations?
+
+###### (7) Survival Analysis (mafSurvival)
+
+Remember back to Kaplan-Meier survival plots (from the clinical data tutorial). These plots allow us to visualize survival probabilities stratified by different clinical factors (such as age, sex, stage, etc.)
+
+We can also visualize survival probabilities stratified by mutational status. To do this, we use mafSurvival. This is very similar to our traditional KM plots, you may want to open up the clinical data tutorial to follow along there as well.
+
+```{r}
+mafSurvival(maf = FILL IN HERE,
+            genes = "FILL IN HERE", ## pick a gene of your choosing
+            time = "days_to_last_followup", ## name of the column in maf_object@clinical.data containing survival time, you may need to recreate this... if so, check the clinical data tutorial for instructions
+            Status = "Overall_Survival_Status", ## name of the column that contains a boolean value for death events, you may need to recreate this... if so, check the clinical data tutorial for instructions
+            isTCGA = TRUE)
+```
+
+Provide a brief description of your chosen gene and it's posited relationship to survival.
+
+What can you conclude from your plot?
+
+Is this what you would expect according to the literature? Why or why not?
+
+###### (8) Looking Ahead - VERY IMPORTANT!!
+
+Query, download, and prepare the RNA Transcriptomics data in to your R work space. Confirm that your working directory is analysis_data before you run these lines.
+
+Note that this is super slow!! Don't worry, just wait it out.
+
+```{r}
+rna_query <- GDCquery(project = FILL IN HERE,
+                      data.category = "Transcriptome Profiling",
+                      data.type = "Gene Expression Quantification",
+                      workflow.type = "STAR - Counts")
+
+GDCdownload(rna_query)
+
+rna_se <- GDCprepare(rna_query)
+```
