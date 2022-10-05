@@ -8,9 +8,12 @@ date: 10/5/22
     knitr::opts_knit$set(root.dir = normalizePath("/PATH/TO/analysis_data")) 
 ```
 
-```{r}
+```{r Load Packages}
 library(SummarizedExperiment)
 library(TCGAbiolinks)
+```
+
+```{r Query, Download, and Prepare Data}
 rna_query <- GDCquery(project = "TCGA-BRCA",
                       data.category = "Transcriptome Profiling",
                       data.type = "Gene Expression Quantification",
