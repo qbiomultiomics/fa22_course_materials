@@ -159,7 +159,7 @@ Create a new data frame called "rna_counts" that contains the data from unstrand
 # we created age_mask above in the colData section, so we don't need to recreate it. I've put it here for your reference:
 # age_mask <-  is.na(rna_se@colData$age_at_index)
 
-rna_counts <- rna_se@assays@data$unstranded[!age_mask,]
+rna_counts <- rna_se@assays@data$unstranded[, !age_mask]
 ```
 
 Fetch the data for the first 5 patients and the first 15 rows.
