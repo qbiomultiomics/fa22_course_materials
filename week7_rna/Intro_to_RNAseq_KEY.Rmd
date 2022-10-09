@@ -171,5 +171,5 @@ rna_counts[1:15, 1:5]
 Save rna_counts to your local machine (warning: this will likely take a while!)
 
 ```{r Exercise 4.4}
-write.csv(rna_counts, "/PATH/TO/FILE/brca_rna_count_data.csv", row.names = TRUE)
+write.csv(rna_counts, "/PATH/TO/FILE/brca_rna_count_data.csv", row.names = FALSE)
 ```
