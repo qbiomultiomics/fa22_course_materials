@@ -107,7 +107,7 @@ rna_clinical <- as.data.frame(rna_clinical)
 Make a mask and subset out the treatments column.
 
 ```{r Exercise 2.5}
-treatments_mask <- ifelse(colNames(rna_clinical) == "treatments" | colNames(rna_clinical) == "disease_type" | colNames(rna_clinical) == "primary_type", FALSE, TRUE)
+treatments_mask <- ifelse(colnames(rna_clinical) == "treatments" | colnames(rna_clinical) == "disease_type" | colnames(rna_clinical) == "primary_site", FALSE, TRUE)
 rna_clinical <- rna_clinical[, treatments_mask] 
 ```
 
@@ -122,13 +122,13 @@ write.csv(rna_clinical, "/PATH/TO/FILE/brca_rna_clincial_data.csv", row.names = 
 Call head() on rowRanges@elementMetadata:
 
 ```{r Exercise 3.1}
-head(rowRanges@elementMetadata)
+head(rna_se@rowRanges@elementMetadata)
 ```
 
 Create a data frame called rna_genes that contains data from elementMetadata.
 
 ```{r Exercise 3.2}
-rna_genes <- rowRanges@elementMetadata
+rna_genes <- rna_se@rowRanges@elementMetadata
 ```
 
 Use the as.data.frame() function to change this from an S4 object to a data frame object
