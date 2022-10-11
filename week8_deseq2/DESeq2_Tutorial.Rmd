@@ -159,7 +159,7 @@ my_df = my_df[order_indexes, ] # this rewrites the df based on the sorted rows
 my_df # check your df to see if it is sorted by the y values
 ```
 
-Use the logic above as well as the sig_results mask to sort the results df by log2foldchange descending (take a look at the decreasing argument). Note that this can also be done in one line by bypassing the use of order_indexes as an intermediate variable.
+Use the logic above as well as the sig_results mask to create a dataframe called up_reg_results. This df should be sorted by log2foldchange descending (take a look at the decreasing argument). Note that this can also be done in one line by bypassing the use of order_indexes as an intermediate variable.
 
 ```{r}
 up_reg_results <-
@@ -171,7 +171,7 @@ Rewrite up_sig_results to have only the genes where the log2foldchange is > 1 (i
 # write code here
 ```
 
-Repeat the same steps to create a sorted data frame called down_reg_results (this time select for all genes where log2foldchange is < -1).
+Repeat the same steps to create a sorted data frame called down_reg_results (this time select for all genes where log2foldchange is < -1 and sort is ascending by log2foldchange).
 
 ```{r}
 # write code here
