@@ -161,7 +161,7 @@ Use the logic above to sort the sig_results df by log2foldchange. Note that this
 up_reg_results <-
 ```
 
-Select only the genes in up_reg_results where the log2foldchange is > 1 (ie genes that are approximately equally expressed between your populations).
+Select only the genes in up_reg_results where the log2foldchange is > 1 (ie genes that are 2x or greater expressed in one population over the other).
 
 ```{r}
 # write code here
@@ -199,7 +199,7 @@ p-adj value:
 More highly expressed in young or old patients:
 Google the gene. What is its full name, and what appears to be its function? Genecards generally has a pretty good summary:
 
-Write the results table to the week6 folder using write.csv().
+Write the results, up_reg_results, and down_reg_results df's to analysis_data using write.csv().
 
 ```{r}
 # write code here
