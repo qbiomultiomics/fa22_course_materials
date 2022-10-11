@@ -114,13 +114,17 @@ results = results(dds_obj, format = "DataFrame", contrast = c("age_category", "F
 
 ###### (3) Analyzing and saving the data
 
-First, explore the results df using head(), str(), and by double clicking on it in the Environment panel.
+First, explore the results df using head(), View(), and dim().
 
 ```{r}
 # write code here
 ```
 
-We're not interested in all of these columns, so use data.frame() to rewrite results with the following columns in this order: gene name (from rna_genes), gene id (from results rownames), log2foldchange, pvalue, padj, -log10(padj). Rename the columns using colnames(). Note: to get -log10, simply write "-log10(fill in here)".
+We're not interested in all of these columns, so use data.frame() to rewrite results with the following columns in this order: gene name (from rna_genes), gene id (from results rownames), log2foldchange, pvalue, padj, -log10(padj).
+
+There will likely be fewer genes in results than in your rna_se based dataframes. That's okay, just use a mask to include only the genes that are in results. 
+
+Rename the columns using colnames(). Note: to get -log10, simply write "-log10(fill in here)".
 
 ```{r}
 # write code here
