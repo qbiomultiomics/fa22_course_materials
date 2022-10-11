@@ -159,13 +159,13 @@ my_df = my_df[order_indexes, ] # this rewrites the df based on the sorted rows
 my_df # check your df to see if it is sorted by the y values
 ```
 
-Use the logic above to sort the sig_results df by log2foldchange. Note that this can also be done in one line by bypassing the use of order_indexes as an intermediate variable.
+Use the logic above as well as the sig_results mask to sort the results df by log2foldchange ascending. Note that this can also be done in one line by bypassing the use of order_indexes as an intermediate variable.
 
 ```{r}
 up_reg_results <-
 ```
 
-Select only the genes in up_reg_results where the log2foldchange is > 1 (ie genes that are 2x or greater expressed in one population over the other).
+Rewrite up_sig_results to have only the genes where the log2foldchange is > 1 (ie genes that are 2x or greater expressed in one population over the other).
 
 ```{r}
 # write code here
